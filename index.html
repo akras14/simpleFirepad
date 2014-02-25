@@ -21,27 +21,27 @@
 
 	<script>
 	window.onload = function() {
-      // Initialize Firebase.
-      var firepadRef = new Firebase('https://acedemo.firebaseio.com/');
-
-      //Create ACE Instance
-      var editor = ace.edit("firepad-container");
-      editor.setTheme("ace/theme/textmate");
-      var session = editor.getSession();
-      session.setUseWrapMode(true);
-      session.setUseWorker(false);
-      session.setMode("ace/mode/javascript");
-
-      // Create Firepad.
-      var firepad = Firepad.fromACE(firepadRef, editor);
-      
-      // Initialize contents.
-      firepad.on('ready', function() {
-      	if (firepad.isHistoryEmpty()) {
-      		firepad.setText('// JavaScript Editing with Firepad!\nfunction go() {\n  var message = "Hello, world.";\n  console.log(message);\n}');
-      	}
-      });
-  };
-  </script>
+	      // Initialize Firebase.
+	      var firepadRef = new Firebase('https://acedemo.firebaseio.com/');
+	
+	      //Create ACE Instance
+	      var editor = ace.edit("firepad-container");
+	      editor.setTheme("ace/theme/textmate");
+	      var session = editor.getSession();
+	      session.setUseWrapMode(true);
+	      session.setUseWorker(false);
+	      session.setMode("ace/mode/javascript");
+	
+	      // Create Firepad.
+	      var firepad = Firepad.fromACE(firepadRef, editor);
+	      
+	      // Initialize contents.
+	      firepad.on('ready', function() {
+	      	if (firepad.isHistoryEmpty()) {
+	      		firepad.setText('// JavaScript Editing with Firepad!\nfunction go() {\n  var message = "Hello, world.";\n  console.log(message);\n}');
+	      	}
+	      });
+	  };
+  	</script>
 </body>
 </html>
