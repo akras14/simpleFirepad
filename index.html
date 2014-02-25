@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+	<!-- Example addopted from https://github.com/firebase/firepad -->
+
+	<!-- Include Firebase -->
+	<script src="https://cdn.firebase.com/v0/firebase.js"></script>
+
+	<!-- Include ACE and its JavaScript mode and theme files -->
+	<script src="lib/ace/ace.js"></script>
+	<script src="lib/ace/mode-javascript.js"></script>
+	<script src="lib/ace/theme-textmate.js"></script>
+
+	<!-- Include Firepad -->
+	<script src="lib/firepad.js"></script>
+</head>
+<body>
+
+	<div id="firepad-container" style="height: 500px;"></div>
+
+
+	<script>
+	window.onload = function() {
+      // Initialize Firebase.
+      var firepadRef = new Firebase('https://acedemo.firebaseio.com/');
+
+      //Create ACE Instance
+      var editor = ace.edit("firepad-container");
+      editor.setTheme("ace/theme/textmate");
+      var session = editor.getSession();
+      session.setUseWrapMode(true);
+      session.setUseWorker(false);
+      session.setMode("ace/mode/javascript");
+
+      // Create Firepad.
+      var firepad = Firepad.fromACE(firepadRef, editor);
+      
+      // Initialize contents.
+      firepad.on('ready', function() {
+      	if (firepad.isHistoryEmpty()) {
+      		firepad.setText('// JavaScript Editing with Firepad!\nfunction go() {\n  var message = "Hello, world.";\n  console.log(message);\n}');
+      	}
+      });
+  };
+  </script>
+</body>
+</html>
